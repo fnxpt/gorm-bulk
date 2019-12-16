@@ -55,6 +55,7 @@ func InsertOnDuplicateKeyUpdateFunc(scope *gorm.Scope, columnNames, groups []str
 		}
 	}
 
+	fmt.Printf(strings.Join(duplicateUpdates, ", "))
 	// This is not SQL string formatting, prepare statements is in use.
 	// nolint: gosec
 	scope.Raw(fmt.Sprintf(
