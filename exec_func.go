@@ -47,7 +47,9 @@ func InsertOnDuplicateKeyUpdateFunc(scope *gorm.Scope, columnNames, groups []str
 	var duplicateUpdates []string
 
 	for i := range columnNames {
+		fmt.Printf(columnNames[i])
 		if columnNames[i] != "created_at" {
+			fmt.Printf("XXX%s", columnNames[i])
 			duplicateUpdates = append(
 				duplicateUpdates,
 				fmt.Sprintf("%s = VALUES(%s)", columnNames[i], columnNames[i]),
@@ -55,6 +57,7 @@ func InsertOnDuplicateKeyUpdateFunc(scope *gorm.Scope, columnNames, groups []str
 		}
 	}
 
+	fmt.Printf(strings.Join(duplicateUpdates, ", "))
 	// This is not SQL string formatting, prepare statements is in use.
 	// nolint: gosec
 	scope.Raw(fmt.Sprintf(
