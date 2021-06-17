@@ -151,7 +151,7 @@ func scopeFromObjects(db *gorm.DB, objects []interface{}, execFunc ExecFunc) (*g
 		scope.SQLVars = append(scope.SQLVars, objectScope.SQLVars...)
 	}
 
-	execFunc(scope, quotedColumnNames, groups)
+	execFunc(scope, columnNames, groups)
 
 	return scope, nil
 }
